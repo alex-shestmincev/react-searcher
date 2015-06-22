@@ -4,7 +4,7 @@
 
 ```
 sudo npm install gulp browserify react-tools -g
-sudo npm install nodemon react-tools -g
+sudo npm install nodemon -g
 npm install
 gulp
 ```
