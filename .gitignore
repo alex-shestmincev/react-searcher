@@ -28,8 +28,9 @@ node_modules
 .lock-wscript
 
 # Transformed JSX
-react/build
+build
 public/js/behavior.*js
 
 # Misc
 .DS_Store
+.idea
