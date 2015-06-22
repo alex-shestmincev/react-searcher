@@ -24,16 +24,20 @@ app.use(express.static(path.join(__dirname, 'public')))
 
  
 app.get('/api/search/:query', function(req, res) {
-  request.get(appConfig.REMOTE_API_HOST + '/api/search/?api_key=' + appConfig.GIANT_BOMB_API_KEY + '&format=json&resources=game&resource_type=game&query=' + req.params.query + '&field_list=name,image,id').end(function(data) {
+
+
+  var data = { lat: '49.969814799999995',lon: '36.315144599999996',maxDistance: 10,tags: '' };
+
+  request.post(appConfig.REMOTE_API_HOST + '/objects/geofind').send(data).end(function(data) {
     res.set('Content-Type', 'application/json')
-    res.send(data.body)
+    res.send({results:data.body})
   })
 })
 
 app.get('/api/game/:game_id', function(req, res) {
   request.get(appConfig.REMOTE_API_HOST + '/api/game/' + req.params.game_id + '/?api_key=' + appConfig.GIANT_BOMB_API_KEY + '&format=json&field_list=name,image,id,similar_games,deck').end(function(data) {
     res.set('Content-Type', 'application/json')
-    res.send(data.body)    
+    res.send(data.body)
   })
 })
 

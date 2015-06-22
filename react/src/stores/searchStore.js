@@ -14,9 +14,12 @@ var searchStore = Reflux.createStore({
   handleSearchUpdate: function() {
     var self = this
     var searchString = arguments[0]
+    var data = { lat: '49.969814799999995',lon: '36.315144599999996',maxDistance: 10,tags: '' };
+
     request
       .get(appConfig.LOCAL_API_HOST + '/api/search/' + searchString)
       .end(function(err, res) {
+        console.log(res.body);
         if(res.body && res.body.results) {
           self.trigger({
             searchString: searchString,
