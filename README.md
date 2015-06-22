@@ -4,10 +4,9 @@
 
 ```
 sudo npm install gulp browserify react-tools -g
+sudo npm install nodemon react-tools -g
 npm install
+gulp
 ```
 
-## Build & Run
-
-* `./runserver.sh` - builds from scratch into the `/react/build` directory and runs the server. The app should now be available at `http://localhost:4000`.
 

@@ -9,6 +9,7 @@ var browserify = require('browserify')
 var source = require('vinyl-source-stream')
 var vinylPaths = require('vinyl-paths')
 var runSequence = require('run-sequence')
+var nodemon = require('gulp-nodemon')
 
 
 gulp.task('cleanPublic', function() {
@@ -39,6 +40,13 @@ gulp.task('bundlemin', function() {
   return gulp.src('public/js/behavior.js').pipe(uglify()).pipe(rename('behavior.min.js')).pipe(gulp.dest('public/js'))
 })
 
+gulp.task('develop', function () {
+  nodemon({ script: 'bin/www'})
+    .on('restart', function () {
+      console.log('restarted!')
+    })
+})
+
 gulp.task('default', function() {
-  return runSequence('cleanPublic','cleanBuild','buildjs','copydeps','bundle','bundlemin')
+  return runSequence('cleanPublic','cleanBuild','buildjs','copydeps','bundle','bundlemin','develop')
 })
