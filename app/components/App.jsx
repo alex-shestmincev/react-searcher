@@ -5,9 +5,8 @@ var React = require('react/addons')
 var Router = require('react-router-component')
 var DocumentTitle = require('react-document-title')
 
-var Search = require('./Search')
+var SearchForm = require('./SearchForm')
 var SearchResults = require('./SearchResults')
-var Game = require('./Game')
 var Home = require('./Home')
 
 var Locations = Router.Locations
@@ -47,21 +46,22 @@ var App = React.createClass({
         <head>
           <title>%react-iso-vgs%</title>
           <meta charSet="UTF-8" />
-          <link href="http://fonts.googleapis.com/css?family=Merriweather+Sans:800" rel="stylesheet" type="text/css" />
-          <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css" />
-          <link rel="stylesheet" type="text/css" href="/css/style.css" />
+          <link rel="stylesheet" type="text/css" href="/css/google_fonts_roboto.css" />
+          <link rel="stylesheet" type="text/css" href="/css/google_fonts_roboto_condensed.css" />
+          <link rel="stylesheet" type="text/css" href="/css/libs.css" />
+          <link rel="stylesheet" type="text/css" href="/css/main.css" />
         </head>
         <body>
-        <Search onSearch={this.searchGames} entryPath={this.state.entryPath} />
+        <SearchForm onSearch={this.searchGames} entryPath={this.state.entryPath} />
         <DocumentTitle title="%react-iso-vgs%">
         <CaptureClicks>
           <Locations ref="router" path={this.props.path} onNavigation={this.scrollTop}>
             <Location path="/" handler={Home} />
-            <Location path="/game/:game_id/:game_slug" handler={Game} />
             <Location path="/find/:query" handler={SearchResults} />
           </Locations>
         </CaptureClicks>
         </DocumentTitle>
+        <script type="text/javascript" src="/js/libs.js"></script>
         <script type="text/javascript" src="/js/behavior.min.js"></script>
         </body>
       </html>

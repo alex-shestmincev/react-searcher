@@ -1,0 +1,20 @@
+{
+  "name": "0state-web",
+  "version": "0.0.1",
+  "homepage": "",
+  "authors": [
+    "Alex Shestmintsev <shestmintsev@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.5"
+  }
+}

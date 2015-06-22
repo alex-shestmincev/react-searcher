@@ -34,13 +34,6 @@ app.get('/api/find/:query', function(req, res) {
   })
 })
 
-app.get('/api/game/:game_id', function(req, res) {
-  request.get(appConfig.REMOTE_API_HOST + '/api/game/' + req.params.game_id + '/?api_key=' + appConfig.GIANT_BOMB_API_KEY + '&format=json&field_list=name,image,id,similar_games,deck').end(function(data) {
-    res.set('Content-Type', 'application/json')
-    res.send(data.body)
-  })
-})
-
 
 // render react routes on server
 app.use(function(req, res, next) {

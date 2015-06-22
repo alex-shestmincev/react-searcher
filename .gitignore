@@ -34,6 +34,10 @@ public/js/behavior.*js
 # SASS compiler
 public/css/main.css
 
+* bower_components
+bower_components
+public/js/libs.js
+
 # Misc
 .DS_Store
 .idea

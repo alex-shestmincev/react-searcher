@@ -5,12 +5,23 @@ var gulp = require('gulp')
 var react = require('gulp-react')
 var rename = require('gulp-rename')
 var uglify = require('gulp-uglify')
+var concat = require('gulp-concat')
 var browserify = require('browserify')
 var source = require('vinyl-source-stream')
 var vinylPaths = require('vinyl-paths')
 var runSequence = require('run-sequence')
 var nodemon = require('gulp-nodemon')
 var sass = require('gulp-sass');
+
+var paths = {
+  libs:   [
+    './bower_components/jquery/dist/jquery.min.js',
+    './bower_components/bootstrap/dist/js/bootstrap.min.js'
+  ],
+  css:    [
+    './bower_components/bootstrap/dist/css/bootstrap.min.css'
+  ]
+};
 
 
 gulp.task('cleanPublic', function() {
@@ -40,7 +51,7 @@ gulp.task('bundlemin', function() {
   return gulp.src('public/js/behavior.js').pipe(uglify()).pipe(rename('behavior.min.js')).pipe(gulp.dest('public/js'))
 })
 
-gulp.task('develop', function () {
+gulp.task('server', function () {
   nodemon({ script: 'bin/www'})
     .on('restart', function () {
       console.log('restarted!')
@@ -57,6 +68,19 @@ gulp.task('sass:watch', function () {
   gulp.watch('./sass/*.scss', ['sass']);
 });
 
+gulp.task('jslibs', function () {
+  gulp.src(paths.libs)
+    .pipe(concat('libs.js'))
+    //.pipe(uglify())
+    .pipe(gulp.dest('./public/js'));
+});
+
+gulp.task('csslibs', function () {
+  gulp.src(paths.css)
+    .pipe(concat('libs.css'))
+    .pipe(gulp.dest('./public/css'));
+});
+
 gulp.task('default', function() {
-  return runSequence('cleanPublic','cleanBuild','buildjs','copydeps','bundle','bundlemin','sass','develop','sass:watch')
+  return runSequence('cleanPublic','cleanBuild','buildjs','copydeps','bundle','bundlemin','jslibs','csslibs','sass','server','sass:watch')
 })
