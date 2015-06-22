@@ -10,6 +10,7 @@ var source = require('vinyl-source-stream')
 var vinylPaths = require('vinyl-paths')
 var runSequence = require('run-sequence')
 var nodemon = require('gulp-nodemon')
+var sass = require('gulp-sass');
 
 
 gulp.task('cleanPublic', function() {
@@ -46,6 +47,16 @@ gulp.task('develop', function () {
     })
 })
 
+gulp.task('sass', function () {
+  gulp.src('./sass/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./public/css'));
+});
+
+gulp.task('sass:watch', function () {
+  gulp.watch('./sass/*.scss', ['sass']);
+});
+
 gulp.task('default', function() {
-  return runSequence('cleanPublic','cleanBuild','buildjs','copydeps','bundle','bundlemin','develop')
+  return runSequence('cleanPublic','cleanBuild','buildjs','copydeps','bundle','bundlemin','sass','develop','sass:watch')
 })

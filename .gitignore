@@ -31,6 +31,9 @@ node_modules
 build
 public/js/behavior.*js
 
+# SASS compiler
+public/css/main.css
+
 # Misc
 .DS_Store
 .idea
