@@ -9,8 +9,8 @@ var Link = require('react-router-component').Link
 var DocumentTitle = require('react-document-title')
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
 
-var appActions = require('./actions')
-var searchStore = require('./stores/searchStore')
+var appActions = require('./../actions/index')
+var searchStore = require('./../stores/searchStore')
 
 
 var SearchResults = React.createClass({

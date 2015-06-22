@@ -1,7 +1,7 @@
 var Reflux = require('reflux')
 var request = require('superagent')
 
-var appConfig = require('./../config')
+var appConfig = require('./../../config')
 var appActions = require('./../actions')
 
 
@@ -17,9 +17,8 @@ var searchStore = Reflux.createStore({
     var data = { lat: '49.969814799999995',lon: '36.315144599999996',maxDistance: 10,tags: '' };
 
     request
-      .get(appConfig.LOCAL_API_HOST + '/api/search/' + searchString)
+      .get(appConfig.LOCAL_API_HOST + '/api/find/' + searchString)
       .end(function(err, res) {
-        console.log(res.body);
         if(res.body && res.body.results) {
           self.trigger({
             searchString: searchString,

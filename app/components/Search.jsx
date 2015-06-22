@@ -4,7 +4,7 @@
 var React = require('react/addons')
 var Reflux = require('reflux')
 
-var searchStore = require('./stores/searchStore')
+var searchStore = require('./../stores/searchStore')
 
 
 var Search = React.createClass({

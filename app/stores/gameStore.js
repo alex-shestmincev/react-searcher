@@ -1,7 +1,7 @@
 var Reflux = require('reflux')
 var request = require('superagent')
 
-var appConfig = require('./../config')
+var appConfig = require('./../../config')
 var appActions = require('./../actions')
 
 

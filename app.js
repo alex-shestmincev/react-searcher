@@ -3,8 +3,8 @@
 require('node-jsx').install({extension: '.jsx'})
 var reactAsync = require('react-async')
 
-var reactApp = require('./react/src/app.jsx')
-var appConfig = require('./react/src/config')
+var reactApp = require('./app/components/App.jsx')
+var appConfig = require('./config')
 
 var request = require('superagent')
 var express = require('express')
@@ -23,7 +23,7 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
  
-app.get('/api/search/:query', function(req, res) {
+app.get('/api/find/:query', function(req, res) {
 
 
   var data = { lat: '49.969814799999995',lon: '36.315144599999996',maxDistance: 10,tags: '' };
@@ -45,7 +45,7 @@ app.get('/api/game/:game_id', function(req, res) {
 // render react routes on server
 app.use(function(req, res, next) {
   if(req.query.q) {
-    res.redirect('/search/' + req.query.q)
+    res.redirect('/find/' + req.query.q)
   }  
   try {
     reactAsync.renderToStringAsync(reactApp.routes({path: req.path}), function(err, markup) {

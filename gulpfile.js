@@ -17,23 +17,22 @@ gulp.task('cleanPublic', function() {
 })
 
 gulp.task('cleanBuild', function() {
-  return gulp.src('react/build').pipe(vinylPaths(del))
+  return gulp.src('build').pipe(vinylPaths(del))
 })
 
 gulp.task('buildjs', function() {
-  return gulp.src('react/src/*.jsx').pipe(react()).pipe(gulp.dest('react/build'))
+  return gulp.src('app/components/*.jsx').pipe(react()).pipe(gulp.dest('build/components'))
 })
 
 gulp.task('copydeps', function() {
   return gulp.src([
-    './react/src/stores/*.*',
-    './react/src/actions/*.*',
-    './react/src/config/*.*'
-    ], {base: './react/src'}).pipe(gulp.dest('react/build'))
+    './app/stores/*.*',
+    './app/actions/*.*'
+  ], {base: './app'}).pipe(gulp.dest('build'))
 })
 
 gulp.task('bundle', function() {
-  return browserify('./react/build/app.js').bundle().pipe(source('behavior.js')).pipe(gulp.dest('public/js'))
+  return browserify('./build/components/App.js').bundle().pipe(source('behavior.js')).pipe(gulp.dest('public/js'))
 })
 
 gulp.task('bundlemin', function() {

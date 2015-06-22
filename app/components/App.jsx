@@ -5,10 +5,10 @@ var React = require('react/addons')
 var Router = require('react-router-component')
 var DocumentTitle = require('react-document-title')
 
-var Search = require('./search')
-var SearchResults = require('./searchResults')
-var Game = require('./game')
-var Home = require('./home')
+var Search = require('./Search')
+var SearchResults = require('./SearchResults')
+var Game = require('./Game')
+var Home = require('./Home')
 
 var Locations = Router.Locations
 var Location = Router.Location
@@ -30,7 +30,7 @@ var App = React.createClass({
   },
 
   searchGames: function(query) {
-    this.refs.router.navigate('/search/' + encodeURI(query))
+    this.refs.router.navigate('/find/' + encodeURI(query))
   },
 
   scrollTop: function() {
@@ -58,7 +58,7 @@ var App = React.createClass({
           <Locations ref="router" path={this.props.path} onNavigation={this.scrollTop}>
             <Location path="/" handler={Home} />
             <Location path="/game/:game_id/:game_slug" handler={Game} />
-            <Location path="/search/:query" handler={SearchResults} />
+            <Location path="/find/:query" handler={SearchResults} />
           </Locations>
         </CaptureClicks>
         </DocumentTitle>
